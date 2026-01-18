@@ -18,6 +18,9 @@ const app = {
         
         // Set minimum date for deadline input to current date/time
         this.setMinDate();
+
+        checkDeadlineNotifications(); // run once immediately
+        setInterval(checkDeadlineNotifications, 60000); // run every minute
     },
 
     /**
@@ -320,3 +323,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Make app available globally
 window.app = app;
+
+// Deadline notification for 24h 
+function checkDeadlineNotifications(){
+    const tasks = StorageManager.getTasks();
+    const now = new Date();
+    let updated = false;
+
+    tasks.forEach(task => {
+        if(task.completed) return;
+        const deadline = new Date(task.dueDate);
+        const diffHours = (deadline - now) / (1000 * 60 * 60);
+        const hoursLeft = Math.floor(diffHours);
+        const minutesLeft = Math.floor((diffHours - hoursLeft) * 60);
+
+        if(diffHours <= 24 && diffHours > 23 && !task.notifiedDay){
+            alert(`⏰ "${task.title}" is due tomorrow You have ${hoursLeft} hours left and ${minutesLeft} minutes left.`);
+            task.notifiedDay = true;
+            updated = true;
+        }
+
+        if(diffHours <= 1 && diffHours > 0 && !task.notifiedHour){
+            alert(`🔥 "${task.title}" is due in ${hoursLeft} hours and ${minutesLeft} minutes`)
+            task.notifiedHour = true;
+            updated = true;
+        }
+    })
+
+    if(updated){
+        StorageManager.saveTasks(tasks);
+    }
+}
