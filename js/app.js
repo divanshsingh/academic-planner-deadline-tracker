@@ -228,11 +228,22 @@ const app = {
      * @param {string} taskId - ID of task to delete
      */
     deleteTask(taskId) {
-        if (confirm('Are you sure you want to delete this deadline?')) {
+        // 1. Find the task to get its title
+        const tasks = StorageManager.getTasks();
+        const taskToDelete = tasks.find(t => t.id === taskId);
+        
+        if (!taskToDelete) return;
+
+        // 2. Prepare the confirmation message
+        const message = `Are you sure you want to delete the deadline: "${taskToDelete.title}"?`;
+
+        // 3. Instead of window.confirm, we will trigger a custom UI sequence
+        // We'll pass a callback function that runs only if the user confirms
+        UI.showConfirmModal(message, () => {
             StorageManager.deleteTask(taskId);
             UI.init();
             console.log('🗑️ Task deleted!');
-        }
+        });
     },
 
     /**
