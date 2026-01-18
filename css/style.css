@@ -375,13 +375,48 @@ body {
 
 /* Empty State */
 .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
     text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-secondary);
+    background: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color, #e0e0e0);
+    margin: 2rem 0;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
 }
 
 .empty-state p {
-    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 400px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Call to Action Button */
+.cta-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .coming-soon {

@@ -36,7 +36,12 @@ const UI = {
         if (sortedTasks.length === 0) {
             deadlinesList.innerHTML = `
                 <div class="empty-state">
-                    <p>📚 No deadlines yet. Add your first one to get started!</p>
+                    <div class="empty-state-icon">📝</div>
+                    <h3>No deadlines yet</h3>
+                    <p>It looks like your schedule is clear! Start staying on top of your studies by adding your first deadline.</p>
+                    <button class="btn btn-primary cta-btn" onclick="UI.showModal('deadlineModal')">
+                        + Add Your First Deadline
+                    </button>
                 </div>
             `;
             return;
