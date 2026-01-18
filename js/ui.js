@@ -199,6 +199,36 @@ const UI = {
     },
 
     /**
+     * ADDED FOR ISSUE #58: Show a styled confirmation modal
+     * @param {string} message - Message to display
+     * @param {Function} onConfirm - Callback for when user confirms
+     */
+    showConfirmModal(message, onConfirm) {
+        const modal = document.getElementById('confirmModal');
+        const messageElement = document.getElementById('confirmMessage');
+        const acceptBtn = document.getElementById('acceptConfirm');
+        const cancelBtn = document.getElementById('cancelConfirm');
+
+        if (!modal || !messageElement || !acceptBtn || !cancelBtn) return;
+
+        messageElement.textContent = message;
+        this.showModal('confirmModal');
+
+        // Recreate the accept button to clear previous event listeners
+        const newAcceptBtn = acceptBtn.cloneNode(true);
+        acceptBtn.parentNode.replaceChild(newAcceptBtn, acceptBtn);
+
+        newAcceptBtn.addEventListener('click', () => {
+            onConfirm();
+            this.hideModal('confirmModal');
+        });
+
+        cancelBtn.onclick = () => {
+            this.hideModal('confirmModal');
+        };
+    },
+
+    /**
      * Switch between views
      * @param {string} viewName - Name of view to show
      */

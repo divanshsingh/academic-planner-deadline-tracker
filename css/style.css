@@ -513,3 +513,72 @@ body {
     opacity: 0.6;
     text-decoration: line-through;
 }
+/* Enhanced Confirmation Modal Styling */
+.confirmation-content {
+    max-width: 450px;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#confirmTitle {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+#confirmMessage {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Button Container */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Standardizing Buttons */
+.modal-buttons .btn-secondary, 
+.modal-buttons .btn-danger {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    min-width: 120px;
+}
+
+/* Secondary/Cancel Button */
+.modal-buttons .btn-secondary {
+    background-color: #6c757d22;
+    color: var(--text-primary);
+    border: 1px solid #6c757d55;
+}
+
+.modal-buttons .btn-secondary:hover {
+    background-color: #6c757d44;
+}
+
+/* Danger/Delete Button */
+.modal-buttons .btn-danger {
+    background-color: var(--danger-color, #dc3545);
+    color: white;
+}
+
+.modal-buttons .btn-danger:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
