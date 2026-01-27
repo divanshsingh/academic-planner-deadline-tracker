@@ -68,7 +68,7 @@ const UI = {
                     <h4 class="deadline-title">${task.title}</h4>
                     <div class="deadline-meta">
                         <span>📚 ${courseName}</span>
-                        <span>📅 ${formatDate(task.dueDate)}</span>
+                        <span>🗓️ ${formatDate(task.dueDate)}</span>
                         <span>⏰ ${formatRelativeTime(task.dueDate)}</span>
                         <span class="priority-badge" style="color: var(--${task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'success'}-color)">
                             ${task.priority.toUpperCase()}
